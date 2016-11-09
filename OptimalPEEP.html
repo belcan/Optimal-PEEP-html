@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Made with Thimble</title>
+   <link rel="stylesheet" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <h1>Optimal PEEP</h1>
+
+
+    <form id="myform">
+      Pplato:
+      <input type="text" id="pplato" placeholder="cmH2O"><br><br>
+      Pes on Insp:
+      <input type="text" id="pesoninsp" placeholder="mmHg" ><br><br>
+      PEEP:
+      <input type="text" id="peep" placeholder="cmH2O"><br><br>
+      Pes on Exp:
+      <input type="text" id="pesonexp" placeholder="mmHg"><br><br>
+    </form>
+      Ptp Insp:      <span id="ptpinsp"></span><br><br>
+    Ptp Exp:<span id="ptpexp"></span>&nbsp&nbsp<span style="font-size:13px !important;"> (should be 0 to +10 cmH2O)</span><br> <br>
+    Delta P:<span id="deltap"></span>&nbsp&nbsp<span style="font-size:13px !important;"> (should be &lt 20 cmH2O)</span><br><br>
+      <button type="button" onclick="calculate()" >Calculate</button> <br><br>
+    <button type="button" id="resetbutton" onclick="resetform()">Reset</button>
+        
+    
+    <script>
+      function calculate(){
+        var  a=document.getElementById("pplato").value;
+        var b= document.getElementById("pesoninsp").value;
+        var  c= document.getElementById("peep").value;
+        var  d= document.getElementById("pesonexp").value;
+        var  e= document.getElementById("ptpinsp").innerHTML=(a-(b*1.36)).toFixed(1);
+        var   f= document.getElementById("ptpexp").innerHTML=(c-(d*1.36)).toFixed(1);
+        var  g= document.getElementById("deltap").innerHTML=(e-f).toFixed(1);
+
+      }
+      function resetform(){
+        document.getElementById("myform").reset()
+
+        document.getElementById("ptpinsp").innerHTML=''
+        document.getElementById("ptpexp").innerHTML=''
+        document.getElementById("deltap").innerHTML=''
+      }
+        $("#resetbutton").css ("outline", "11px solid red")
+    </script>
+  </body>
+</html>
